@@ -1,0 +1,22 @@
+# 多分部分点プレートにする
+
+<h2>New book</h2>
+  <%= form_with model: @book do |f| %>
+    <h4>Title</h4>
+      <%= f.text_field :title %>
+    <h4>Opinion</h4>
+      <%= f.text_area :body %>
+    <%= f.submit 'Create Book' %>
+  <% end %>
+  
+  #ここまでテンプレート
+  
+<% @books.each do |book| %>
+<div>
+  <p><%= book.user.name %></p>
+  <%= link_to book_path(book.id) do %>
+    <p><%= book.title %></p>
+  <% end %>
+  <p><%= book.body %></p>
+</div>
+<% end %>
