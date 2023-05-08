@@ -1,16 +1,14 @@
-# 多分部分点プレートにする
+<% if @book.errors.any? %>
+  <%= @book.errors.count %> error prohibited this obj from being saved:
+  <ul>
+   <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+   <% end %>
+  </ul>
+<% end %>
 
-<h2>New book</h2>
-  <%= form_with model: @book do |f| %>
-    <h4>Title</h4>
-      <%= f.text_field :title %>
-    <h4>Opinion</h4>
-      <%= f.text_area :body %>
-    <%= f.submit 'Create Book' %>
-  <% end %>
-  
-  #ここまでテンプレート
-  
+<%= render 'users/list', book: @book, user: @user %>
+
 <% @books.each do |book| %>
 <div>
   <p><%= image_tag book.user.get_profile_image(30,30) %></p>
