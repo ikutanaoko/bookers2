@@ -1,0 +1,35 @@
+<!-- 多分部分テンプレート-->
+
+<h2>User info</h2>
+
+<div>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <h4>name  <%= @user.name %></h4>
+  <h4>introduction
+    <p><%= @user.introduction %></p>
+  </h4>
+  <%if @user == current_user %>
+    <%= link_to "Edit", edit_user_path(@user.id) %>
+    <% end %>
+</div>
+
+<!-- ここまでテンプレート-->
+
+<!-- 新規投稿のテンプレート-->
+
+<h2>Books</h2>
+
+<% @books.each do |book| %>
+<div>
+  <p><%= image_tag book.user.get_profile_image(50,50) %></p>
+  <p><%= book.user.name %></p>
+  <p><%= book.title %></p>
+  <p><%= book.body %></p>  
+    <%if book.user == current_user %>
+      <%= link_to "Edit", edit_book_path(book) %>
+      <%= link_to "Destroy", book_path(book), method: :delete, "data-confirm" => "Are You Sure?" %>
+    <% end %>
+    
+</div>
+<% end %>
+

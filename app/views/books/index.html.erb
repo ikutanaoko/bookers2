@@ -13,6 +13,7 @@
   
 <% @books.each do |book| %>
 <div>
+  <p><%= image_tag book.user.get_profile_image(30,30) %></p>
   <p><%= book.user.name %></p>
   <%= link_to book_path(book.id) do %>
     <p><%= book.title %></p>
