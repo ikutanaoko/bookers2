@@ -15,20 +15,24 @@
           </tr>
         </thead>
         <tbody>
-    <% @books.each do |book| %>
-    <div>
-      <p><%= image_tag book.user.get_profile_image(50,50) %></p>
-      
-      <%= link_to book_path(book.id) do %>
-      <p><%= book.title %></p>
-      <% end %>
-      <p><%= book.body %></p>  
-    
-        
-    </div>
-    <% end %>
+        <% @books.each do |book| %>
+          <tr>
+            <td><%= image_tag book.user.get_profile_image(30,30),class:"rounded-circle" %>
+            </td>
+            <td>
+              <div class="title">
+                <%= link_to book_path(book.id) do %><%= book.title %>
+                <% end %>
+              </div>
+            </td>
+            <td>
+              <div class"body"><%= book.body %></div>
+            </td>
+
+        <% end %>
         </tbody>
-      <    
+      </table>
+    <%= paginate @books %>
     </div>
   </div>
 </div>
