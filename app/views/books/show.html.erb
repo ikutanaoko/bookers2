@@ -1,10 +1,16 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
 <%= render 'users/list', book: @book_new, user: @user %>
 
 <h2>Book detail</h2>
 
 <div>
   <p><%= image_tag @book.user.get_profile_image(30,30) %></p>
-  <p>User name : <%= @book.user.name %></p>
+  <%= link_to user_path(@book.user.id) do %>
+    <p><%= @book.user.name %></p>
+  <% end %>
   <p>Title : <%= @book.title %></p>
   <p>Opinion : <%= @book.body %></p>
   

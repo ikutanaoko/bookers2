@@ -1,3 +1,4 @@
+<div class="container mt-4"> 
 <% if @book.errors.any? %>
   <%= @book.errors.count %> error prohibited this obj from being saved:
   <ul>
@@ -7,15 +8,39 @@
   </ul>
 <% end %>
 
-<%= render 'users/list', book: @book, user: @user %>
+	<div class="row">
+			<%= render 'users/list', book: @book, user: @user %>
+	  <div class="col-8">
+			<h2>Books</h2>
+ 			<table class="table table-hover" >   
+				<thead>
+ 	     	  <tr>
+		        <th></th>
+		        <th class="title">Title</th>
+		        <th class="body">Opinion</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+          <% @books.each do |book| %>
+		      <tr>
+            <td><%= image_tag book.user.get_profile_image(30,30),class:"rounded-circle" %>
+            </td>
+            <td>
+						  <div class="title">
+							  <%= link_to book_path(book.id) do %><p><%= book.title %></p>
+							  <% end %>
+						</div>
+            </td>
+			      <td><div class="body"><%= book.body %></div>
+			      </td>
+          </tr>
+          <% end %>
 
-<% @books.each do |book| %>
-<div>
-  <p><%= image_tag book.user.get_profile_image(30,30) %></p>
-  <p><%= book.user.name %></p>
-  <%= link_to book_path(book.id) do %>
-    <p><%= book.title %></p>
-  <% end %>
-  <p><%= book.body %></p>
+        </tbody>
+
+      </table>
+      <%= paginate @books %>
+    </div>
+	</div>
 </div>
-<% end %>
+
